@@ -1,7 +1,8 @@
 from __future__ import unicode_literals
 from .manager import Manager
 from .filesmanager import FilesManager
-from .payrollmanager import PayrollManager
+#from .payrollmanager import PayrollManager
+from .constants import XERO_PAYROLL_URL
 
 
 class Xero(object):
@@ -90,4 +91,4 @@ class Payroll(object):
         # the lowercase name of the object and attach it to an
         # instance of a Manager object to operate on it
         for name in self.OBJECT_LIST:
-            setattr(self, name.lower(), PayrollManager(name, credentials))
+            setattr(self, name.lower(), Manager(name, credentials, api_url=XERO_PAYROLL_URL))

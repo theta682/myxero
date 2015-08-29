@@ -84,10 +84,10 @@ class Manager(object):
         'ne': '!='
     }
 
-    def __init__(self, name, credentials, unit_price_4dps=False):
+    def __init__(self, name, credentials, unit_price_4dps=False, api_url=XERO_API_URL):
         self.credentials = credentials
         self.name = name
-        self.base_url = credentials.base_url + XERO_API_URL
+        self.base_url = credentials.base_url + api_url
         self.extra_params = {"unitdp": 4} if unit_price_4dps else {}
         self.singular = singular(name)
 

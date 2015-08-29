@@ -36,11 +36,23 @@ OBJECT_NAMES = {
     "TaxRates": "TaxRate",
     "TrackingCategories": "TrackingCategory",
     "Users": "User",
+    # Files API
     "Associations": "Association",
     "Files": "File",
     "Folders": "Folder",
     "Inbox": "Inbox",
     "LineItems": "LineItem",
+    # Payroll API
+    "LeaveApplications": "LeaveApplication",
+    "PayItems": "PayItem",
+    "PayrollCalendars": "PayrollCalendar",
+    "PayRuns": "PayRun",
+    "Payslip": "Payslip",
+    "Settings": "Setting",
+    "SuperFunds": "SuperFund",
+    "SuperFundProducts": "SuperFundProduct",
+    "Timesheets": "Timesheet",
+    "Worklocations": "Worklocation",
 }
 
 def isplural(word):
