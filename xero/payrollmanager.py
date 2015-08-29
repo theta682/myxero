@@ -11,12 +11,32 @@ from dateutil.parser import parse
 from decimal import Decimal
 from six.moves.urllib.parse import parse_qs
 
-from .constants import XERO_API_URL
+from .constants import XERO_PAYROLL_URL
 from .exceptions import *
-from .utils import singular, isplural, parse_date, json_load_object_hook
+from .utils import parse_date, json_load_object_hook
 
 
-class Manager(object):
+OBJECT_NAMES = {
+    "Employees": "Employee",
+    "LeaveApplications": "LeaveApplication",
+    "PayItems": "PayItem",
+    "PayrollCalendars": "PayrollCalendar",
+    "PayRuns": "PayRun",
+    "Payslip": "Payslip",
+    "Settings": "Setting",
+    "SuperFunds": "SuperFund",
+    "SuperFundProducts": "SuperFundProduct",
+    "Timesheets": "Timesheet",
+    "Worklocations": "Worklocation",
+}
+
+def isplural(word):
+    return word in OBJECT_NAMES.keys()
+
+def singular(word):
+    return OBJECT_NAMES.get(word)
+
+class PayrollManager(object):
     DECORATED_METHODS = (
         'get',
         'save',
@@ -64,6 +84,7 @@ class Manager(object):
         'SentToContact',
         'IsSubscriber',
         'HasAttachments',
+        'IsPrimary',
     )
     DECIMAL_FIELDS = (
         'Hours',
@@ -87,7 +108,7 @@ class Manager(object):
     def __init__(self, name, credentials, unit_price_4dps=False):
         self.credentials = credentials
         self.name = name
-        self.base_url = credentials.base_url + XERO_API_URL
+        self.base_url = credentials.base_url + XERO_PAYROLL_URL
         self.extra_params = {"unitdp": 4} if unit_price_4dps else {}
         self.singular = singular(name)
 
