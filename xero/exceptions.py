@@ -52,11 +52,16 @@ class XeroBadRequest(XeroException):
 class XeroUnauthorized(XeroException):
     # HTTP 401: Unauthorized
     def __init__(self, response):
-        dom = parseString(response.text.encode(response.encoding))
-        messages = dom.getElementsByTagName('Message')
+        payload = parse_qs(response.text)
+        if 'oauth_problem' in payload:
+            self.problem = payload['oauth_problem'][0]
+            super(XeroUnauthorized, self).__init__(response, payload['oauth_problem_advice'][0])
+        else:
+            dom = parseString(response.text.encode(response.encoding))
+            messages = dom.getElementsByTagName('Message')
 
-        msg = messages[0].childNodes[0].data
-        super(XeroUnauthorized, self).__init__(response, msg)
+            msg = messages[0].childNodes[0].data
+            super(XeroUnauthorized, self).__init__(response, msg)
 
 
 class XeroForbidden(XeroException):
