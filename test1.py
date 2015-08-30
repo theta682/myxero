@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from __future__ import unicode_literals
+
 from config import xero_config
 
 from xero import Xero
