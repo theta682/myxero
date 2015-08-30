@@ -3,7 +3,7 @@
 from config import xero_config
 
 from xero import Xero
-from xero.auth import PublicCredentials, PrivateCredentials
+from xero.auth import PrivateCredentials
 
 # Connect to Xero
 credentials = PrivateCredentials(xero_config['consumer_key'], xero_config['private_key'])

@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 from .manager import Manager
 from .filesmanager import FilesManager
-#from .payrollmanager import PayrollManager
 from .constants import XERO_PAYROLL_URL
 
 

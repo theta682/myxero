@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 import requests
 import json
 import six
+import os
 
 from datetime import datetime
 from six.moves.urllib.parse import parse_qs
@@ -61,7 +62,7 @@ class FilesManager(object):
             cert = getattr(self.credentials, 'client_cert', None)
             response = getattr(requests, method)(
                     uri, data=body, headers=headers, auth=self.credentials.oauth,
-                    params=params, cert=cert, files = files)
+                    params=params, cert=cert, files=files, verify=False)
 
             if response.status_code == 200 or response.status_code == 201:
                 if response.headers['content-type'].startswith('application/json'):
