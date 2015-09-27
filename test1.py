@@ -2,6 +2,7 @@
 
 from __future__ import unicode_literals
 
+from datetime import datetime
 from config import xero_config
 
 from xero import Xero
@@ -17,4 +18,22 @@ xero = Xero(credentials)
 #print(users)
 #employees = xero.payrollAPI.employees.all()
 #print(employees)
-print(xero.manualjournals.all())
+#print(xero.manualjournals.all())
+#print(xero.linkedtransactions.all())
+#print(xero.journals.filter(Journal_SourceID='8a428893-8812-4286-99e7-1e5a3a20fd54'))
+
+def get_accounts():
+    print(xero.accounts.all())
+
+def get_journals():
+    # journal 1-6442
+    journals = []
+    for i in range(1, 6500, 100):
+        journals.extend(xero.journals.filter(offset=i))
+    
+    print(journals)
+
+def get_payments():
+    print(xero.payments.all())
+
+get_accounts()

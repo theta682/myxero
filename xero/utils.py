@@ -25,6 +25,7 @@ OBJECT_NAMES = {
     "Invoices": "Invoice",
     "Items": "Item",
     "Journals": "Journal",
+    "LinkedTransactions": "LinkedTransaction",
     "ManualJournals": "ManualJournal",
     "Organisation": "Organisation",
     "Overpayments": "Overpayment",
